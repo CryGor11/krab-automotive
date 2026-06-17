@@ -296,13 +296,11 @@ form.quote .btn{margin-top:6px;width:100%}
 @keyframes capIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(246,164,28,.55)}70%{box-shadow:0 0 0 10px rgba(246,164,28,0)}100%{box-shadow:0 0 0 0 rgba(246,164,28,0)}}
 
-/* mobile: hero video becomes a readable 16:9 banner above the copy (not a dark over-zoomed crop) */
+/* mobile: hero video = dimmed full-bleed BACKGROUND behind copy (centered, legible, not over-cropped) */
 @media(max-width:680px){
-  .hero{display:block;min-height:auto;padding:104px 0 60px}
-  .hero-video-bg{position:relative;inset:auto;width:auto;height:auto;margin:0 20px 24px;aspect-ratio:16/9;border-radius:14px;border:1px solid var(--line-strong)}
-  .hbg-video{width:100%;height:100%;object-position:center center;filter:brightness(.96) saturate(1)}
-  .hero-video-overlay{background:linear-gradient(180deg,transparent 54%,rgba(13,14,17,.5))}
-  .video-caption{left:12px;bottom:10px}
+  .hbg-video{width:100%;object-position:center center;filter:brightness(.6) saturate(.95)}
+  .hero-video-overlay{background:linear-gradient(180deg,rgba(13,14,17,.35) 0%,rgba(13,14,17,.55) 48%,rgba(13,14,17,.82) 100%)}
+  .video-caption{display:none}
   /* about: stat card flows below the photo (was a clipped absolute overlay) */
   .about-media{overflow:visible;aspect-ratio:auto;border:0;border-radius:0;background:transparent}
   .about-media img{aspect-ratio:4/3;height:auto;border:1px solid var(--line-strong);border-radius:var(--r)}
