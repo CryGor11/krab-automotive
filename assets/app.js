@@ -41,33 +41,22 @@ function initForm(){
   const form=document.querySelector('form.quote');
   if(!form) return;
   const ok=form.querySelector('.form-ok');
-  form.addEventListener('submit',async e=>{
+  form.addEventListener('submit',e=>{
     e.preventDefault();
-    const btn=form.querySelector('button[type="submit"]');
-    const payload={
-      name: (form.elements['name']||{}).value||'',
-      company: (form.elements['company']||{}).value||'',
-      email: (form.elements['email']||{}).value||'',
-      message: (form.elements['message']||{}).value||'',
-      _subject: 'New inquiry — KR-AB Automotive',
-      _template: 'table'
-    };
-    if(btn) btn.disabled=true;
-    try{
-      const r=await fetch('https://formsubmit.co/ajax/info@automotive-kr-ab.com',{
-        method:'POST',
-        headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body:JSON.stringify(payload)
-      });
-      if(r.ok){
-        if(ok){ ok.style.display='block'; }
-        form.querySelectorAll('input,textarea').forEach(i=>i.value='');
-      } else {
-        if(ok){ ok.style.display='block'; ok.textContent='⚠ '+ (document.documentElement.lang==='pl'?'Spróbuj ponownie lub napisz na info@automotive-kr-ab.com':'Please try again or email info@automotive-kr-ab.com'); }
-      }
-    }catch(err){
-      if(ok){ ok.style.display='block'; ok.textContent='⚠ '+ (document.documentElement.lang==='pl'?'Błąd sieci — napisz na info@automotive-kr-ab.com':'Network error — email info@automotive-kr-ab.com'); }
-    }finally{ if(btn) btn.disabled=false; }
+    const pl=document.documentElement.lang==='pl';
+    const v=n=>(((form.elements[n]||{}).value)||'').trim();
+    const body=[
+      (pl?'Imię i nazwisko':'Name')+': '+v('name'),
+      (pl?'Firma':'Company')+': '+v('company'),
+      'E-mail: '+v('email'),
+      '',
+      (pl?'Zapotrzebowanie':'Inquiry')+':',
+      v('message')
+    ].join('\n');
+    window.location.href='mailto:info@automotive-kr-ab.com'
+      +'?subject='+encodeURIComponent('New inquiry — KR-AB Automotive')
+      +'&body='+encodeURIComponent(body);
+    if(ok){ ok.style.display='block'; }
   });
 }
 /* ---------- Motion: scroll-reveal + stagger + count-up + parallax ---------- */
