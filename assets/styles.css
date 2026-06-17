@@ -310,4 +310,6 @@ form.quote .btn{margin-top:6px;width:100%}
 .brand .bv{width:2px;height:22px;background:var(--amber);opacity:.85}
 .brand .ba{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.6rem;letter-spacing:.32em;color:var(--muted);white-space:nowrap}
 .site-footer .brand .bk{font-size:1.16rem}
+.brand-mark{height:42px;width:auto;display:block}
+.site-footer .brand-mark{height:38px}
 @media(max-width:420px){.brand .ba{display:none}}
